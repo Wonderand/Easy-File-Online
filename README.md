@@ -18,15 +18,15 @@
 
 - 登录页面（包含登录、注册、密码重置），路径 `/signin` 
 
-	![登录页面](http://towerpan.qiniu.segocat.com/git/efo/signin.png)
+	![登录页面](https://blog.huzhirong.top/signin#login)
 	
 - 资源首页，路径 `/index` 
 
-	![登录页面](http://towerpan.qiniu.segocat.com/git/efo/index.png)
+	![登录页面](https://blog.huzhirong.top/index#resource)
 	
 - 上传页面，路径 `/upload` 
 
-	![登录页面](http://towerpan.qiniu.segocat.com/git/efo/upload.png)
+	![登录页面](https://blog.huzhirong.top/upload)
 	
 - 管理员管理页面，路径 `/admin` 
 
