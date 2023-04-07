@@ -38,7 +38,12 @@ buildNumber.properties
 .idea
 *.iws
 *.ipr
-
+.mvn
+LICENSE
+mvnw
+mvnw.cmd
+/mysql/efo.mwb
+/mysql/efo.mwb.bak
 .DS_Store
 !.mvn/wrapper/maven-wrapper.jar
 
@@ -59,5 +64,7 @@ nbdist/
 .nb-gradle/
 /META-INF/
 src/main/resources/templates/
+src/META-INF
 /out/
 /bin/
+src/test
