@@ -21,11 +21,11 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 
 @RestController
@@ -72,8 +72,13 @@ public class FileController {
             @ApiImplicitParam(name = "prefix", value = "文件前缀（仅适用于管理员上传文件，普通用户无效）")})
     @AuthInterceptor(InterceptorLevel.USER)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String upload(int categoryId, String tag, String description, String prefix, @RequestParam("file")
+    public String upload(HttpServletRequest request, int categoryId, String tag, String description, String prefix, @RequestParam("file")
             MultipartFile multipartFile) {
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
         User user = (User) request.getSession().getAttribute(ValueConsts.USER_STRING);
         return ControllerUtils.getResponse(fileService.upload(categoryId, tag, description, prefix, multipartFile,
                 user));
