@@ -247,6 +247,8 @@ public class FileServiceImpl implements IFileService {
         if (user.getIsUploadable() == 1) {
             String name = multipartFile.getOriginalFilename();
             String suffix = FileExecutor.getFileSuffix(name);
+            String contentType = multipartFile.getContentType();
+            logger.error(contentType);
             String localUrl = SettingConfig.getUploadStoragePath() + ValueConsts.SEPARATOR + name;
             Category category = categoryService.getById(categoryId);
             long maxSize = Formatter.sizeToLong(EfoApplication.settings.getStringUseEval(ConfigConsts
