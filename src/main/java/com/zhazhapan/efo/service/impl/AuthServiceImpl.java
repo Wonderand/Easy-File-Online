@@ -16,10 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author pantao
- * @since 2018/2/1
- */
 @Service
 public class AuthServiceImpl implements IAuthService {
 

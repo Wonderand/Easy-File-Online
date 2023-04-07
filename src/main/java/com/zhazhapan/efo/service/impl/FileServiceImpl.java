@@ -30,16 +30,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * @author pantao
- * @since 2018/1/29
- */
 @Service
 public class FileServiceImpl implements IFileService {
 
@@ -248,6 +246,12 @@ public class FileServiceImpl implements IFileService {
             String name = multipartFile.getOriginalFilename();
             String suffix = FileExecutor.getFileSuffix(name);
             String contentType = multipartFile.getContentType();
+            try {
+                InputStream inputStream = multipartFile.getInputStream();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             logger.error(contentType);
             String localUrl = SettingConfig.getUploadStoragePath() + ValueConsts.SEPARATOR + name;
             Category category = categoryService.getById(categoryId);
@@ -278,7 +282,7 @@ public class FileServiceImpl implements IFileService {
                     maxSize + "]");
             if (canUpload) {
                 String visitUrl = getRegularVisitUrl(Checker.isNotEmpty(prefix) && user.getPermission() > 1 ? prefix
-                        : EfoApplication.settings.getStringUseEval(ConfigConsts.CUSTOM_LINK_RULE_OF_SETTING), user,
+                                : EfoApplication.settings.getStringUseEval(ConfigConsts.CUSTOM_LINK_RULE_OF_SETTING), user,
                         name, suffix, category);
                 if (fileExists) {
                     removeByLocalUrl(localUrl);
@@ -326,7 +330,7 @@ public class FileServiceImpl implements IFileService {
             customUrl += (customUrl.endsWith("/") ? "" : "/") + fileName;
         }
         customUrl = customUrl.replace(YEAR, DateUtils.getYear(date)).replace(MONTH, DateUtils.getMonth(date)).replace
-                (DAY, DateUtils.getDay(date)).replace(AUTHOR, user.getUsername()).replace(FILE_NAME, fileName)
+                        (DAY, DateUtils.getDay(date)).replace(AUTHOR, user.getUsername()).replace(FILE_NAME, fileName)
                 .replace(CATEGORY_NAME, Checker.checkNull(Checker.isNull(category) ? "uncategorized" : category
                         .getName())).replace(RANDOM_ID, String.valueOf(RandomUtils.getRandomInteger(ValueConsts
                         .NINE_INT))).replace(FILE_SUFFIX, suffix);
