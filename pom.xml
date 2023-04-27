@@ -97,7 +97,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
-                    <mainClass>com.zhazhapan.efo.EfoApplication</mainClass>
+                    <mainClass>com.huzhirong.efo.EfoApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -114,7 +114,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.zhazhapan.efo.EfoApplication</mainClass>
+                            <mainClass>com.huzhirong.efo.EfoApplication</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
