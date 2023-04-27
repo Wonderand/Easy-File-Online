@@ -18,7 +18,7 @@
 
 - 登录页面（包含登录、注册、密码重置），路径 `/signin` 
 
-	![登录页面](https://blog.huzhirong.top/signin#login)
+	![登录页面](https://storage.huzhirong.top/file/2023/04/27/886113193.png)
 	
 - 资源首页，路径 `/index` 
 
