@@ -1,0 +1,25 @@
+server:
+  port: 8081
+mybatis:
+  type-aliases-package: com.huzhirong.efo.entity
+  ssl:
+    key-store: classpath:9579320_blog.huzhirong.top.pfx
+    key-password: e3ftafoe
+    key-store-type: PKCS12
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/efo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
+    username: root
+    password: 123
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jpa:
+    show-sql: true
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main

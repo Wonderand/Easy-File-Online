@@ -42,6 +42,7 @@ public class SettingConfig {
             String key = jsonPath + ValueConsts.DOT_SIGN + ConfigConsts.AUTH_OF_SETTINGS[i];
             auth[i] = settings.getBooleanUseEval(key) ? 1 : 0;
         }
+
         return auth;
     }
 

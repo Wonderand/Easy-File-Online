@@ -1,9 +1,6 @@
 package com.huzhirong.efo.web.controller;
-
-import cn.hutool.http.HttpRequest;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -11,7 +8,7 @@ import java.net.UnknownHostException;
 @RestController
 public class PublicController {
 
-    @GetMapping("/ip")
+    @PostMapping("/ip")
     public String getIpAddr(HttpServletRequest request){
         String ipAddress = request.getHeader("x-forwarded-for");
         if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {

@@ -3,7 +3,7 @@ package com.huzhirong.efo;
 import com.huzhirong.efo.config.TokenConfig;
 import com.huzhirong.efo.modules.constant.ConfigConsts;
 import com.huzhirong.efo.modules.constant.DefaultValues;
-import com.spring4all.swagger.EnableSwagger2Doc;
+//import com.spring4all.swagger.EnableSwagger2Doc;
 import com.zhazhapan.config.JsonParser;
 import com.zhazhapan.util.FileExecutor;
 import com.zhazhapan.util.MailSender;
@@ -18,7 +18,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 @SpringBootApplication
-@EnableSwagger2Doc
+//@EnableSwagger2Doc
 @MapperScan("com.huzhirong.efo.dao")
 @EnableTransactionManagement
 public class EfoApplication {
