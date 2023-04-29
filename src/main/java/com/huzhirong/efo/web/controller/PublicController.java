@@ -1,9 +1,10 @@
 package com.huzhirong.efo.web.controller;
 import com.huzhirong.efo.util.MailUtils;
+import org.redisson.api.RMap;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,6 +15,9 @@ public class PublicController {
 
     @Autowired
     private MailUtils mail;
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     @PostMapping("/ip")
     public String getIpAddr(HttpServletRequest request){
@@ -45,11 +49,17 @@ public class PublicController {
         }
         return ipAddress;
     }
-    @PostMapping("/sendemail")
-    public String getEmailCode(String email){
+    @GetMapping("/sendemail/{email}")
+    public String getEmailCode(@PathVariable String email){
         //生成随机6位数验证码
+
+
         String s = String.valueOf((int) ((Math.random() * 9 + 1) * 100000));
+        RMap<String,String> emailCode = redissonClient.getMap("emailCode");
+        emailCode.put(email,s);
+        System.out.println(emailCode.get(email));
         mail.sendMail(email,"您的验证码是:\n\r"+s+"\n请勿泄露!","EFO验证码");
+
         return "success";
     }
 }

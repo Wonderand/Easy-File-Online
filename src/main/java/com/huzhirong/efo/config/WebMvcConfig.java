@@ -3,6 +3,9 @@ package com.huzhirong.efo.config;
 import com.alibaba.fastjson.JSONObject;
 import com.huzhirong.efo.interceptor.WebInterceptor;
 import com.huzhirong.efo.exception.GlobalExceptionHandler;
+import com.huzhirong.efo.util.MailUtils;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -55,5 +58,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
     public JSONObject jsonObject() {
         return new JSONObject();
+    }
+    @Bean
+    public MailUtils mailUtils() {
+        return new MailUtils();
     }
 }

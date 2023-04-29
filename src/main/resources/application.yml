@@ -23,3 +23,12 @@ spring:
     restart:
       enabled: false
       additional-paths: src/main
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 3
+
+redisson:
+  singleServerConfig:
+    address: "redis://127.0.0.1:6379"

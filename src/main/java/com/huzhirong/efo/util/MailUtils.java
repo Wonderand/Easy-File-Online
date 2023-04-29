@@ -9,8 +9,8 @@ import java.util.Properties;
  * 发邮件工具类
  */
 public final class MailUtils {
-    private static final String USER = "test@qq.com"; // 发件人称号，同邮箱地址※
-    private static final String PASSWORD = "test"; // 授权码，开启SMTP时显示※
+    private static final String USER = "2043352370@qq.com"; // 发件人称号，同邮箱地址※
+    private static final String PASSWORD = "mqtsbfgvupolciae"; // 授权码，开启SMTP时显示※
 
     /**
      *
@@ -74,7 +74,7 @@ public final class MailUtils {
     public static void main(String[] args) throws Exception { // 做测试用
         String s = String.valueOf((int) ((Math.random() * 9 + 1) * 100000));
         System.out.println(s);
-        MailUtils.sendMail("test@qq.com","您的验证码是:\n\r"+s+"\n请勿泄露!","验证码");//填写接收邮箱※
+        MailUtils.sendMail("2290641663@qq.com","您的验证码是:\n\r"+s+"\n请勿泄露!","验证码");//填写接收邮箱※
         System.out.println("发送成功");
     }
 

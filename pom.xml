@@ -67,7 +67,12 @@
             <artifactId>javax.mail</artifactId>
             <version>1.5.3</version>
         </dependency>
-
+        <!--javaMail-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.19.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
