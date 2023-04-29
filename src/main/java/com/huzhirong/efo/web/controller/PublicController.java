@@ -1,12 +1,19 @@
 package com.huzhirong.efo.web.controller;
+import com.huzhirong.efo.util.MailUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @RestController
+@RequestMapping("/public")
 public class PublicController {
+
+    @Autowired
+    private MailUtils mail;
 
     @PostMapping("/ip")
     public String getIpAddr(HttpServletRequest request){
@@ -37,5 +44,12 @@ public class PublicController {
             }
         }
         return ipAddress;
+    }
+    @PostMapping("/sendemail")
+    public String getEmailCode(String email){
+        //生成随机6位数验证码
+        String s = String.valueOf((int) ((Math.random() * 9 + 1) * 100000));
+        mail.sendMail(email,"您的验证码是:\n\r"+s+"\n请勿泄露!","EFO验证码");
+        return "success";
     }
 }
