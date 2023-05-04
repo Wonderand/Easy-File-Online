@@ -1,12 +1,18 @@
 package com.huzhirong.efo.entity;
 
 import com.huzhirong.efo.util.BeanUtils;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
 /**
  * 分类表
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
     private int id;
@@ -20,12 +26,6 @@ public class Category {
 
     public Category(String name) {
         this.name = name;
-    }
-
-    public Category(int id, String name, Timestamp createTime) {
-        this.id = id;
-        this.name = name;
-        this.createTime = createTime;
     }
 
     @Override

@@ -1,9 +1,15 @@
 package com.huzhirong.efo.model;
 
 import com.huzhirong.efo.util.BeanUtils;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class FileRecord {
 
     private long id;

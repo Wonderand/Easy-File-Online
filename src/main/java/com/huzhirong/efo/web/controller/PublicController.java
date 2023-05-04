@@ -1,5 +1,7 @@
 package com.huzhirong.efo.web.controller;
+
 import com.huzhirong.efo.util.MailUtils;
+import org.apache.ibatis.annotations.Param;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import java.net.UnknownHostException;
 @RestController
 @RequestMapping("/public")
 public class PublicController {
+
+//    @Autowired
+//    private IPublicService service;
 
     @Autowired
     private MailUtils mail;
@@ -49,11 +54,13 @@ public class PublicController {
         }
         return ipAddress;
     }
-    @GetMapping("/sendemail/{email}")
-    public String getEmailCode(@PathVariable String email){
+    @PostMapping("/sendemail")
+    public String getEmailCode(@Param("email") String email){
         //生成随机6位数验证码
-
-
+//        String mail1 = service.getMail(email);
+//        System.out.println("");
+//        if (mail1==null)
+//            return "邮件不正确";
         String s = String.valueOf((int) ((Math.random() * 9 + 1) * 100000));
         RMap<String,String> emailCode = redissonClient.getMap("emailCode");
         emailCode.put(email,s);

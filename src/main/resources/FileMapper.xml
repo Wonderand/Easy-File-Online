@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "mybatis-3-mapper.dtd">
+<mapper namespace="com.huzhirong.efo.module.mapper.FileMapper">
+
+    <select id="getAll" resultType="com.huzhirong.efo.model.FileRecord">
+        select *
+        from file
+        JOIN user u on u.id=f.user_id
+        JOIN category c on c.id=f.category_id
+        <if test="">
+
+        </if>
+        where user.id = #{userId}
+    </select>
+</mapper>

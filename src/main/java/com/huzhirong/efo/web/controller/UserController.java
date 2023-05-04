@@ -14,11 +14,13 @@ import com.huzhirong.efo.util.ControllerUtils;
 import com.zhazhapan.modules.constant.ValueConsts;
 import com.zhazhapan.util.Checker;
 import com.zhazhapan.util.Formatter;
+import com.zhazhapan.util.LoggerUtils;
 import com.zhazhapan.util.encryption.JavaEncrypt;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,7 @@ import java.security.NoSuchAlgorithmException;
 @Api(value = "/user", description = "用户相关操作")
 public class UserController {
 
+    private final Logger loggerUtils = LoggerUtils.getLogger();
     private final IUserService userService;
 
     private final HttpServletRequest request;
@@ -163,11 +166,14 @@ public class UserController {
     @AuthInterceptor(InterceptorLevel.NONE)
     @RequestMapping(value = "/login", method = RequestMethod.PUT)
     public String login(String username, String password, boolean auto, String token) {
+        loggerUtils.error(username+password+"");
         //使用密码登录
         User user = userService.login(username, password, ValueConsts.NULL_STRING, ValueConsts.NULL_RESPONSE);
         if (Checker.isNull(user) || user.getPermission() < 1) {
             jsonObject.put("status", "failed");
+            loggerUtils.error("对象为空");
         } else {
+            loggerUtils.error("成功");
             request.getSession().setAttribute(ValueConsts.USER_STRING, user);
             jsonObject.put("status", "success");
             if (auto) {
@@ -177,6 +183,7 @@ public class UserController {
                 TokenConfig.removeTokenByValue(user.getId());
             }
         }
+        System.out.println(user.toString());
         return jsonObject.toString();
     }
 

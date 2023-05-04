@@ -75,17 +75,19 @@ function register() {
         alerts("该站点已禁止注册，请联系管理员");
     }
 }
+
 function sendMail() {
     /** @namespace globalConfig.allowRegister */
-            $.post("/user/register", {
-                username: username,
-                email: email,
-                password: password,
-                code: verifyCode
-            }, function (data) {
+    var email = $("#email").val();
+    $.post("/sendemail/{e}", {
+            username: username,
+            email: email,
+            password: password,
+            code: verifyCode
+        }, function (data) {
 
-            }
-        );
+        }
+    );
 }
 
 function login() {
